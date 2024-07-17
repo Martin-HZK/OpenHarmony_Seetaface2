@@ -1,0 +1,11 @@
+import("//build/ohos.gni")
+group("SeetaFace2") {
+    deps = [
+        "FaceDetector",
+        "FaceLandmarker",
+        "FaceRecognizer",
+        "FaceTracker",
+        "QualityAssessor",
+        "SeetafaceApi"
+    ]
+}

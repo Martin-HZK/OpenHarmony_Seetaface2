@@ -1,0 +1,46 @@
+{
+    "name": "@ohos/Seetaface2",
+    "description": "Seetaface2 napi interface",
+    "version": "3.1",
+    "license": "Apache License 2.0",
+    "publishAs": "code-segment",
+    "segment": {
+      "destPath": "third_party/Seetaface2"
+    },
+    "dirs": {},
+    "scripts": {},
+    "licensePath": "LICENSE",
+    "component": {
+      "name": "Seetaface2",
+      "subsystem": "thirdparty",
+      "syscap": [],
+      "features": [],
+      "adapted_system_type": [
+        "standard"
+      ],
+      "rom": "",
+      "ram": "",
+      "deps": {
+        "components": [
+            "opencv",
+            "ace_napi"
+        ],
+        "third_party": [
+            "ace_napi",
+            "opencv"
+        ]
+      },
+      "build": {
+        "sub_component": [
+          "//third_party/Seetaface2/FaceDetector: FaceDetector",
+          "//third_party/Seetaface2/FaceLandmarker: FaceLandmarker",
+          "//third_party/Seetaface2/FaceRecognizer: FaceRecognizer",
+          "//third_party/Seetaface2/FaceTracker: FaceTracker",
+          "//third_party/Seetaface2/QualityAssessor: QualityAssessor",
+          "//third_party/Seetaface2/SeetafaceApi:SeetafaceApi"
+        ],
+        "inner_kits": [],
+        "test": []
+      }
+    }
+  }
