@@ -1,0 +1,57 @@
+import("//build/ohos.gni")
+config("lib_config") {
+    cflags_cc = [
+        "-frtti",
+        "-fexceptions",
+        "-DCVAPI_EXPORTS",
+        "-DOPENCV_ALLOCATOR_STATS_COUNTER_TYPE=int",
+        "-D_USE_MATH_DEFINES",
+        "-D__OPENCV_BUILD=1",
+        "-D__STDC_CONSTANT_MACROS",
+        "-D__STDC_FORMAT_MACROS",
+        "-D__STDC_LIMIT_MACROS",
+        "-O2",
+        "-Wno-error=header-hygiene",
+        "-Wno-unused-variable",
+        "-Wno-sign-compare",
+        "-Wno-pessimizing-move",
+        "-Wno-unused-function",
+        "-Wno-unused-local-typedef",
+        "-Wno-ignored-qualifiers",
+        "-Wno-header-hygiene"
+    ]
+}
+ohos_shared_library("SeetaNet"){
+    sources = [
+        "//third_party/SeetaFace2/SeetaNet/src/SeetaNet.cpp",
+        "//third_party/SeetaFace2/SeetaNet/src/SeetaNetProto.cpp",
+        "//third_party/SeetaFace2/SeetaNet/src/SeetaNetParseProto.cpp",
+        "//third_party/SeetaFace2/SeetaNet/src/SeetaNetMathCPU.cpp",
+        "//third_party/SeetaFace2/SeetaNet/src/SeetaNetIm2Col.cpp",
+        "//third_party/SeetaFace2/SeetaNet/src/SeetaNetForward.cpp",
+        "//third_party/SeetaFace2/SeetaNet/src/ReadFromSeetaNetLayer.cpp",
+        "//third_party/SeetaFace2/SeetaNet/src/orz/mem/pot.cpp",
+        "//third_party/SeetaFace2/SeetaNet/src/orz/mem/vat.cpp",
+        "//third_party/SeetaFace2/SeetaNet/src/orz/sync/canyon.cpp",
+        "//third_party/SeetaFace2/SeetaNet/src/orz/sync/cartridge.cpp",
+        "//third_party/SeetaFace2/SeetaNet/src/orz/sync/shotgun.cpp",
+        "//third_party/SeetaFace2/SeetaNet/src/orz/tools/box.cpp",
+    ]
+    include_dirs = [
+        "//third_party/SeetaFace2/SeetaNet",
+        "//third_party/SeetaFace2/SeetaNet/include",
+        "//third_party/SeetaFace2/SeetaNet/src",
+        "//third_party/SeetaFace2/SeetaNet/src/include_inner",
+        "//third_party/SeetaFace2/SeetaNet/src/include_inner/layers",
+        "//third_party/SeetaFace2/SeetaNet/src/orz",
+        "//third_party/SeetaFace2/SeetaNet/src/orz/mem",
+        "//third_party/SeetaFace2/SeetaNet/src/orz/sync",
+        "//third_party/SeetaFace2/SeetaNet/src/orz/tools"
+    ]
+    configs = [
+       ":lib_config"
+    ]
+
+    part_name = "Seetaface2"
+    subsystem_name = "thirdparty"
+}
