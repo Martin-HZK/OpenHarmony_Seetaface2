@@ -1,0 +1,46 @@
+import("//build/ohos.gni")
+config("lib_config") {
+    cflags_cc = [
+        "-frtti",
+        "-fexceptions",
+        "-DCVAPI_EXPORTS",
+        "-DOPENCV_ALLOCATOR_STATS_COUNTER_TYPE=int",
+        "-D_USE_MATH_DEFINES",
+        "-D__OPENCV_BUILD=1",
+        "-D__STDC_CONSTANT_MACROS",
+        "-D__STDC_FORMAT_MACROS",
+        "-D__STDC_LIMIT_MACROS",
+        "-O2",
+        "-Wno-error=header-hygiene",
+        "-Wno-unused-variable",
+        "-Wno-sign-compare",
+        "-Wno-pessimizing-move",
+        "-Wno-unused-function",
+        "-Wno-unused-local-typedef",
+        "-Wno-ignored-qualifiers",
+        "-Wno-header-hygiene"
+    ]
+}
+ohos_shared_library("FaceTracker"){
+    sources = [
+        "//third_party/SeetaFace2/FaceTracker/src/seeta/FaceTracker.cpp",
+    ]
+    include_dirs = [
+        "//third_party/SeetaFace2/FaceTracker/",
+        "//third_party/SeetaFace2/FaceTracker/include",
+        "//third_party/SeetaFace2/FaceTracker/include/seeta",
+        "//third_party/SeetaFace2/SeetaNet/include/",
+        "//third_party/SeetaFace2/FaceDetector/seeta",
+        "//third_party/SeetaFace2/FaceDetector/include"
+    ]
+    deps = [
+        "//third_party/SeetaFace2/SeetaNet:SeetaNet",
+        "//third_party/SeetaFace2/FaceDetector:FaceDetector"
+    ]
+    configs = [
+       ":lib_config"
+    ]
+
+    part_name = "Seetaface2"
+    subsystem_name = "thirdparty"
+}
