@@ -1,0 +1,50 @@
+import("//build/ohos.gni")
+config("lib_config") {
+    cflags_cc = [
+        "-frtti",
+        "-fexceptions",
+        "-DCVAPI_EXPORTS",
+        "-DOPENCV_ALLOCATOR_STATS_COUNTER_TYPE=int",
+        "-D_USE_MATH_DEFINES",
+        "-D__OPENCV_BUILD=1",
+        "-D__STDC_CONSTANT_MACROS",
+        "-D__STDC_FORMAT_MACROS",
+        "-D__STDC_LIMIT_MACROS",
+        "-O2",
+        "-Wno-error=header-hygiene",
+        "-Wno-unused-variable",
+        "-Wno-sign-compare",
+        "-Wno-pessimizing-move",
+        "-Wno-unused-local-typedef",
+        "-Wno-unused-function",
+        "-Wno-ignored-qualifiers",
+        "-Wno-header-hygiene"
+    ]
+}
+ohos_shared_library("QualityAssessor"){
+    sources = [
+        "//third_party/SeetaFace2/QualityAssessor/src/ClarityQuality.cpp",
+        "//third_party/SeetaFace2/QualityAssessor/src/PoseQuality.cpp",
+        "//third_party/SeetaFace2/QualityAssessor/src/QualityAssessor.cpp",
+        "//third_party/SeetaFace2/QualityAssessor/seeta/common_alignment.cpp",
+        "//third_party/SeetaFace2/QualityAssessor/seeta/ImageProcess.cpp",
+        "//third_party/SeetaFace2/QualityAssessor/seeta/graphics2d.cpp",
+    ]
+    include_dirs = [
+        "//third_party/SeetaFace2/QualityAssessor",
+        "//third_party/SeetaFace2/QualityAssessor/src",
+        "//third_party/SeetaFace2/QualityAssessor/seeta",
+        "//third_party/SeetaFace2/QualityAssessor/include",
+        "//third_party/SeetaFace2/QualityAssessor/include/seeta",
+        "//third_party/SeetaFace2/SeetaNet/include/"
+    ]
+    deps = [
+        "//third_party/SeetaFace2/SeetaNet:SeetaNet"
+    ]
+    configs = [
+       ":lib_config"
+    ]
+
+    part_name = "Seetaface2"
+    subsystem_name = "thirdparty"
+}

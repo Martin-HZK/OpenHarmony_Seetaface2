@@ -1,0 +1,50 @@
+import("//build/ohos.gni")
+config("lib_config") {
+    cflags_cc = [
+        "-frtti",
+        "-fexceptions",
+        "-DCVAPI_EXPORTS",
+        "-DOPENCV_ALLOCATOR_STATS_COUNTER_TYPE=int",
+        "-D_USE_MATH_DEFINES",
+        "-D__OPENCV_BUILD=1",
+        "-D__STDC_CONSTANT_MACROS",
+        "-D__STDC_FORMAT_MACROS",
+        "-D__STDC_LIMIT_MACROS",
+        "-O2",
+        "-Wno-error=header-hygiene",
+        "-Wno-unused-variable",
+        "-Wno-sign-compare",
+        "-Wno-pessimizing-move",
+        "-Wno-unused-function",
+        "-Wno-unused-local-typedef",
+        "-Wno-ignored-qualifiers",
+        "-Wno-header-hygiene"
+    ]
+}
+ohos_shared_library("FaceRecognizer"){
+    sources = [
+        "//third_party/SeetaFace2/FaceRecognizer/src/seeta/FaceRecognizer.cpp",
+        "//third_party/SeetaFace2/FaceRecognizer/src/seeta/FaceDatabase.cpp",
+        "//third_party/SeetaFace2/FaceRecognizer/seeta/common_alignment.cpp",
+        "//third_party/SeetaFace2/FaceRecognizer/seeta/FaceRecognizerPrivate.cpp",
+        "//third_party/SeetaFace2/FaceRecognizer/seeta/graphics2d.cpp",
+        "//third_party/SeetaFace2/FaceRecognizer/seeta/ImageProcess.cpp",
+        "//third_party/SeetaFace2/FaceRecognizer/seeta/SeetaNetParseProto.cpp",
+    ]
+    include_dirs = [
+        "//third_party/SeetaFace2/FaceRecognizer",
+        "//third_party/SeetaFace2/FaceRecognizer/seeta",
+        "//third_party/SeetaFace2/FaceRecognizer/include",
+        "//third_party/SeetaFace2/FaceRecognizer/include/seeta",
+        "//third_party/SeetaFace2//SeetaNet/include/"
+    ]
+    deps = [
+        "//third_party/SeetaFace2/SeetaNet:SeetaNet"
+    ]
+    configs = [
+       ":lib_config"
+    ]
+
+    part_name = "Seetaface2"
+    subsystem_name = "thirdparty"
+}
